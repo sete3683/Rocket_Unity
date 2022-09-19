@@ -9,6 +9,7 @@ public class RocketCollision : MonoBehaviour
     [SerializeField] private float rocketCrashDelay = 3f;
     [SerializeField] private AudioClip rocketClearSound;
     [SerializeField] private AudioClip rocketCrashSound;
+    [SerializeField] private ParticleSystem rocketClearParticle;
     [SerializeField] private ParticleSystem rocketCrashParticle;
 
     private RocketMovement rocketControl;
@@ -24,14 +25,17 @@ public class RocketCollision : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (isEnded)
+            return;
+
         switch (collision.gameObject.tag)
         {
             case "Finish":
-                if (!isEnded) StartCoroutine(Clear());
+                StartCoroutine(Clear());
                 break;
 
             case "Obstacle":
-                if (!isEnded) StartCoroutine(Crash());
+                StartCoroutine(Crash());
                 break;
         }
     }
@@ -42,11 +46,12 @@ public class RocketCollision : MonoBehaviour
         rocketControl.enabled = false;
         rocketAudioSource.Stop();
         rocketAudioSource.PlayOneShot(rocketClearSound);
+        rocketClearParticle.Play();
 
         yield return new WaitForSeconds(rocketClearDelay);
 
         isEnded = false;
-        NextScene();
+        SceneHandler.NextScene();
     }
 
     IEnumerator Crash()
@@ -60,17 +65,6 @@ public class RocketCollision : MonoBehaviour
         yield return new WaitForSeconds(rocketCrashDelay);
 
         isEnded = false;
-        ReloadScene();
-    }
-
-    void NextScene()
-    {
-        SceneManager.LoadScene(
-            (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
-    }
-
-    void ReloadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneHandler.ReloadScene();
     }
 }

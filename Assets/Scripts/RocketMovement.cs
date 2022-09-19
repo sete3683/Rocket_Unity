@@ -24,45 +24,73 @@ public class RocketMovement : MonoBehaviour
     void Update()
     {
         CheckBoost();
+
+        if (canBoost)
+            PlayBoostEffects();
+        else
+            StopBoostEffects();
+
         CheckRotate();
     }
 
     void FixedUpdate()
     {
         if (canBoost)
-        {
-            rocketRigidbody.AddRelativeForce(0, rocketBoostSpeed, 0);
-        }
+            AddBoostPower();
 
         if (rotateDirection != 0f)
-        {
-            rocketRigidbody.constraints ^= RigidbodyConstraints.FreezeRotationZ;
-            rocketRigidbody.MoveRotation(
-                rocketRigidbody.rotation * Quaternion.Euler(0, 0, rotateDirection * rocketRotateSpeed));
-            rocketRigidbody.constraints ^= RigidbodyConstraints.FreezeRotationZ;
-        }
+            AddRotatePower();
     }
+
+    void OnCollisionEnter()
+    {
+        if (rocketBoostParticle.isPlaying)
+            rocketBoostParticle.Stop();
+    }
+
+    #region Inner Logic
 
     void CheckBoost()
     {
         canBoost = Input.GetKey(KeyCode.Space);
-
-        if (canBoost)
-        {
-            if (!rocketAudioSource.isPlaying)
-                rocketAudioSource.PlayOneShot(rocketBoostSound);
-
-            rocketBoostParticle.Play();
-        }
-        else
-        {
-            if (rocketAudioSource.isPlaying)
-                rocketAudioSource.Stop();
-        }
     }
 
     void CheckRotate()
     {
         rotateDirection = -Input.GetAxisRaw("Horizontal");
     }
+
+    void PlayBoostEffects()
+    {
+        if (!rocketAudioSource.isPlaying)
+            rocketAudioSource.PlayOneShot(rocketBoostSound);
+
+        if (!rocketBoostParticle.isPlaying)
+            rocketBoostParticle.Play();
+    }
+
+    void StopBoostEffects()
+    {
+        if (rocketAudioSource.isPlaying)
+            rocketAudioSource.Stop();
+
+        if (rocketBoostParticle.isPlaying)
+            rocketBoostParticle.Stop();
+    }
+
+    void AddBoostPower()
+    {
+        rocketRigidbody.AddRelativeForce(0, rocketBoostSpeed, 0);
+
+    }
+
+    void AddRotatePower()
+    {
+        rocketRigidbody.constraints ^= RigidbodyConstraints.FreezeRotationZ;
+        rocketRigidbody.MoveRotation(
+            rocketRigidbody.rotation * Quaternion.Euler(0, 0, rotateDirection * rocketRotateSpeed));
+        rocketRigidbody.constraints ^= RigidbodyConstraints.FreezeRotationZ;
+    }
+    
+    #endregion
 }

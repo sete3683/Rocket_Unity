@@ -468,10 +468,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
-    - target: {fileID: 3768483980596656485, guid: d2873ac1013c1ed4c936eba269e6f043, type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2873ac1013c1ed4c936eba269e6f043, type: 3}
 --- !u!1001 &4657220106263242874
