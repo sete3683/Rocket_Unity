@@ -18,6 +18,9 @@ public class ObstacleMovement : MonoBehaviour
 
     void Update()
     {
+        if (cycleTime <= Mathf.Epsilon)
+            return;
+
         float cycle = Time.time / cycleTime;
         float sin = Mathf.Sin(cycle * Tau);
         obstacleMovementFactor = sin;

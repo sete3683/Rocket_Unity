@@ -410,10 +410,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1070499681102931145, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1070499681102931145, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.5717628
       objectReference: {fileID: 0}
@@ -456,22 +452,6 @@ PrefabInstance:
     - target: {fileID: 1070499681102931189, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}
       propertyPath: m_Name
       value: Obstacle (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4983688111851206876, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}
-      propertyPath: cycleTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4983688111851206876, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}
-      propertyPath: obstacleMovementFactor
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4983688111851206876, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}
-      propertyPath: obstacleMovementVector.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4983688111851206876, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}
-      propertyPath: obstacleMovementVector.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}

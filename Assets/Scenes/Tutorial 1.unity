@@ -411,6 +411,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 4983688111851206876, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}
+      propertyPath: cycleTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983688111851206876, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e275972aa5f817345baf8b60e3f4872e, type: 3}
 --- !u!1001 &3658516589393157809
